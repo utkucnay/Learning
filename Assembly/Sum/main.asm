@@ -10,14 +10,19 @@ section .text
 main:
  sub RSP, 8
 
- mov R8D, 2
- mov R9D, 4
- add R8D, R9D
+ sub RSP, 32
+ mov dword [RSP+8], 2
+ mov dword [RSP+16], 4
+ mov ECX, dword [RSP+8]
+ add ECX, dword [RSP+16]
+ mov dword [RSP+24], ECX
 
  sub RSP, 32
  lea RCX, [REL Message]
- mov EDX, R8D
+ mov EDX, dword [RSP+32+24]
  call printf
+ add RSP, 32
+
  add RSP, 32
 
  xor ECX, ECX
