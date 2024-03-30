@@ -8,7 +8,10 @@ section .data
 
 section .text
 sum:
- add ECX, EDX
+ mov dword [RSP+8], ECX
+ mov dword [RSP+16], EDX
+ mov ECX, dword [RSP+8]
+ add ECX, dword [RSP+16]
  mov EAX, ECX
  ret
 
